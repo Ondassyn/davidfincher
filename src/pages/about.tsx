@@ -1,19 +1,17 @@
-import { Inter } from 'next/font/google';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
-import Carousel from '../components/Carousel';
+import { useRouter } from 'next/navigation';
+import AboutSection from '@/components/AboutSection';
 import Head from 'next/head';
 
-const inter = Inter({ subsets: ['latin'] });
-
-export default function Home() {
-  const router = useRouter();
+const About = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: '0%' }}
-      animate={{ opacity: 1 }}
-      exit={{ y: '-100%' }}
+      initial={{ opacity: 1 }}
+      // animate={{ y: '0%' }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      className=""
     >
       <Head>
         <title>David Fincher</title>
@@ -27,7 +25,9 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Carousel />
+      <AboutSection />
     </motion.div>
   );
-}
+};
+
+export default About;
