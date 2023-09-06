@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { MOVIES } from '../../utils/movies';
 import { FLOOR } from './Carousel';
 import { motion } from 'framer-motion';

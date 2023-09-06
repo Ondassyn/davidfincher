@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { MOVIES } from '../../utils/movies';
 import { motion } from 'framer-motion';
