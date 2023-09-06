@@ -1,6 +1,12 @@
 'use client';
 
-import React, { MouseEvent, useState, WheelEvent } from 'react';
+import React, {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  useState,
+  WheelEvent,
+} from 'react';
 import { MOVIES } from '../../utils/movies';
 import CarouselItem from './CarouselItem';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -8,7 +14,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 export const FLOOR = 50;
 export const CEILING = -50;
 
-const Carousel = () => {
+const Carousel = ({
+  setLoadingState,
+}: {
+  setLoadingState: Dispatch<SetStateAction<number>>;
+}) => {
   const [mouseDownAt, setMouseDownAt] = useState(0);
   const [percentage, setPercentage] = useState(FLOOR);
   const [prevPercentage, setPrevPercentage] = useState(0);
@@ -85,6 +95,7 @@ const Carousel = () => {
             index={index}
             setPercentage={setPercentage}
             setPrevPercentage={setPrevPercentage}
+            setLoadingState={setLoadingState}
           />
         ))}
       </div>

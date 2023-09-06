@@ -14,6 +14,7 @@ const CarouselItem = ({
   index,
   setPercentage,
   setPrevPercentage,
+  setLoadingState,
 }: {
   img: string;
   percentage: number;
@@ -22,6 +23,7 @@ const CarouselItem = ({
   index: number;
   setPercentage: Dispatch<SetStateAction<number>>;
   setPrevPercentage: Dispatch<SetStateAction<number>>;
+  setLoadingState: Dispatch<SetStateAction<number>>;
 }) => {
   return (
     <div
@@ -62,6 +64,10 @@ const CarouselItem = ({
           animationFillMode: 'forwards',
           filter: 'brightness(80%)',
         }}
+        onLoadingComplete={() => {
+          setLoadingState((state) => state + 1);
+        }}
+        loading="eager"
       />
       {itemsInView[index] && (
         <div className="absolute w-full top-[46%] h-full">

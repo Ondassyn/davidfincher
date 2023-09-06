@@ -1,13 +1,12 @@
-import { Inter } from 'next/font/google';
-import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
+import { AnimatePresence, motion } from 'framer-motion';
 import Carousel from '../components/Carousel';
 import Head from 'next/head';
-
-const inter = Inter({ subsets: ['latin'] });
+import { useState } from 'react';
+import { MOVIES } from '../../utils/movies';
+import LoaderSection from '@/components/LoaderSection';
 
 export default function Home() {
-  const router = useRouter();
+  const [loadingState, setLoadingState] = useState(0);
   return (
     <motion.div
       initial={{ opacity: 0, y: '0%' }}
@@ -27,7 +26,14 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Carousel />
+
+      <Carousel setLoadingState={setLoadingState} />
+
+      <AnimatePresence mode="wait">
+        {loadingState < MOVIES.length && (
+          <LoaderSection loadingState={loadingState} />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
