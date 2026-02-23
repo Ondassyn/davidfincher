@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import React, { Dispatch, SetStateAction } from 'react';
-import { MOVIES } from '../../utils/movies';
-import { FLOOR } from './Carousel';
-import { motion } from 'framer-motion';
+import Image from "next/image";
+import React, { Dispatch, SetStateAction } from "react";
+import { MOVIES } from "../../utils/movies";
+import { FLOOR } from "./Carousel";
+import { motion } from "framer-motion";
 
 const CarouselItem = ({
   img,
@@ -28,7 +28,7 @@ const CarouselItem = ({
   return (
     <div
       className={`${
-        itemsInView[index] ? 'w-[90vw] h-[70vh]' : 'w-[20vw] h-[56vh]'
+        itemsInView[index] ? "w-[90vw] h-[70vh]" : "w-[20vw] h-[56vh]"
       } relative transition-all duration-500 ease-in-out`}
       onClick={() => {
         setItemsInView((prev) => {
@@ -41,12 +41,12 @@ const CarouselItem = ({
             setPercentage(
               FLOOR -
                 (100 * (index * 20 + (index - 1) * 2 + 34)) /
-                  ((MOVIES.length - 1) * 22 + 90)
+                  ((MOVIES.length - 1) * 22 + 90),
             );
             setPrevPercentage(
               FLOOR -
                 (100 * (index * 20 + (index - 1) * 2 + 34)) /
-                  ((MOVIES.length - 1) * 22 + 90)
+                  ((MOVIES.length - 1) * 22 + 90),
             );
           }
           return temp;
@@ -54,17 +54,17 @@ const CarouselItem = ({
       }}
     >
       <Image
-        alt={'img'}
+        alt={"img"}
         src={img}
         fill
         style={{
-          objectFit: 'cover',
+          objectFit: "cover",
           objectPosition: `${-FLOOR + percentage + 100}% 50%`,
-          transition: 'object-position 1.2s ease',
-          animationFillMode: 'forwards',
-          filter: 'brightness(80%)',
+          transition: "object-position 1.2s ease",
+          animationFillMode: "forwards",
+          filter: "brightness(80%)",
         }}
-        onLoadingComplete={() => {
+        onLoad={() => {
           setLoadingState((state) => state + 1);
         }}
         loading="eager"

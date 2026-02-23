@@ -1,20 +1,28 @@
-import '@/styles/globals.css';
-import { AnimatePresence } from 'framer-motion';
-import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
-import Navbar from '../components/Navbar';
-import { Inter } from 'next/font/google';
-import Head from 'next/head';
-import { useState } from 'react';
-import { MOVIES } from '../../utils/movies';
-import LoaderSection from '@/components/LoaderSection';
+import "@/styles/globals.css";
+import { AnimatePresence } from "framer-motion";
+import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import Navbar from "../components/Navbar";
+import { Inter } from "next/font/google";
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import { MOVIES } from "../../utils/movies";
+import LoaderSection from "@/components/LoaderSection";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   const [loadingState, setLoadingState] = useState(0);
+
+  useEffect(() => {
+    if (router.pathname === "/") {
+      setLoadingState(0);
+    }
+  }, [router.pathname]);
+
+  const isLoadingPage = router.pathname === "/";
 
   return (
     <AnimatePresence mode="wait">
@@ -24,19 +32,13 @@ export default function App({ Component, pageProps }: AppProps) {
       >
         <Head>
           <title>David Fincher</title>
-          <meta
-            name="description"
-            content="Tribute to David Fincher's work"
-          />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-          />
+          <meta name="description" content="Tribute to David Fincher's work" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Navbar />
         <AnimatePresence mode="wait">
-          {loadingState < MOVIES.length && (
+          {isLoadingPage && loadingState < MOVIES.length && (
             <LoaderSection loadingState={loadingState} />
           )}
         </AnimatePresence>
