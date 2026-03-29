@@ -1,4 +1,4 @@
-# David Fincher Tribute (Creative UI Experiment)
+# David Fincher Tribute
 
 A high-end interactive web experience focused on advanced motion design and custom navigation patterns.
 
